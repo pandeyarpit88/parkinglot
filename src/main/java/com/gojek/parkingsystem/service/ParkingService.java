@@ -3,21 +3,20 @@ package com.gojek.parkingsystem.service;
 import com.gojek.parkingsystem.model.Parking;
 import com.gojek.parkingsystem.model.Vehicle;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ParkingService {
+    boolean isParkingCreated = false;
+    TreeSet<Integer> vacantSlots = new TreeSet<>();
+    HashMap<Integer, Parking> bookedSlots = new HashMap<>();
 
-    TreeSet<Integer> vacantSlots;
-    HashMap<Integer, Parking> bookedSlots;
-
-    public void createParking(int count) {
-        for(int i=1; i<=count; i++) {
+    public String createParking(int count) {
+        for (int i = 1; i <= count; i++) {
             vacantSlots.add(i);
         }
+        isParkingCreated = true;
+        return "Created a parking lot with " + count + " slots";
     }
 
     public TreeSet<Integer> getFreeParking() {
